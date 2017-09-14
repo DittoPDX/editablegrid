@@ -1,10 +1,12 @@
 **Updating Documentation for EditableGrid 2.0**
 
+# EditableGrid v2.0 
+
 **Learn EditableGrid by playing with the examples on here: https://davelab6.github.io/editablegrid/examples/index.html**
 
-**Documentation below is NOT up to date as it does not contain the latest features added in EditableGrid 2.0.** 
-
 # EditableGrid v1.0.11 
+
+**Documentation below is NOT up to date as it does not contain the latest features added in EditableGrid 2.0.** 
 
 ## Introduction
 
