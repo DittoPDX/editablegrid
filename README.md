@@ -6,7 +6,9 @@
 
 # EditableGrid v1.0.11 
 
-**Documentation below is NOT up to date as it does not contain the latest features added in EditableGrid 2.0.** 
+**Documentation below is NOT up to date as it does not contain the latest features added in EditableGrid 2.0.**
+
+**As of September 14th, 2017, the documentation for below has been SIMPLIFIED.** 
 
 ## Introduction
 
@@ -32,37 +34,35 @@ Let's have a look at **examples/demo.html** in your favorite browser.
 * You can edit various types of cells *(string, numeric, enum, email, boolean, date)*.
 * You can sort columns by clicking on the column header and remove rows.
 
-In order to get you started, we provide a simplified version of this demo.
-In file demo.html at line 12, you just have to replace "demo.js" with "demo_simple.js" and refresh the file in your browser.
-What you'll see is the same editable grid, but with some features removed.
+To get started, we use a simple demo.
+In file **demo.html** at line 12, you just have to replace **"demo.js" with "demo_simple.js"** and refresh the file in your browser. What you'll see is the same editable grid, but with some features removed.
 
-Now let's see the source code behind this demo:
+Here's the source code:
 
-* demo.html/css: main html page and a stylesheet for the table
+* demo.html/css: main html page and stylesheet for the table
 * demo.xml: xml file containing the table structure and contents
-* demo_simple.js: javascript source to create our editable grid
+* demo_simple.js: javascript code to create our editable grid
 
 Let's analyze each file:
 
-1. The HTML page is very simple: all it does is include the necessary javascript and css files and create some divs.
-   The CSS file is a very simple and classical stylesheet.
+1. HTML Page: includes important javascript, css files, and divs.
 
 2. The XML file contains two parts:
 
-   a. The table structure, enclosed in the <metadata> tag:
+   **a. The table structure, enclosed in the <metadata> tag:**
 
-      Declaring the structure of your table consists in declaring a list of columns and give the following information for each column:
-      - name: this name can for example be the name of the corresponding field in a database (or anything else you may find useful to know which data has been modified)
-      - label: this label will be used in the table header (if no label is given, the name is used) 
-      - type: type can be one of the following: string, integer, double, boolean, date, email, website, html (if not given, "string" is assumed)
-      - editable: is the column editable or not (if not specified, it won't be editable)
+      Table structure declaration consists of declaring a list of columns with information in each column:
+      - **name**: name can for example be the name of the corresponding field in a database
+      - **label**: label will be used in the table header (if no label given -> the name is used) 
+      - **type**: type can be one of the following: string, integer, double, boolean, date, email, website, html (if not given -> "string" is assumed)
+      - **editable**: table editable or not (if not specified -> then not editable)
       
-      For double and integer columns, the type can also provide additional information, such as the unit, the precision, and/or the symbol to use for NaN, e.g.:
-      - double(m): unit is 'm'
-      - double(1): precision is 1 (and unit is not specified)
-      - double(m, 1): unit is 'm' and precision is 1
-      - double(m, 1, n/a): unit is 'm', precision is 1 and symbol for NaN is 'n/a'
-      - double(€, 2, -): unit is '€', precision is 2 and symbol for NaN is '-'
+      For **double and integer columns**, the type can also provide additional information, such as the unit, the precision, and/or the symbol to use for NaN, e.g.:
+      - **double(m)**: unit is 'm'
+      - **double(1)**: precision is 1 (and unit is not specified)
+      - **double(m, 1)**: unit is 'm' and precision is 1
+      - **double(m, 1, n/a)**: unit is 'm', precision is 1 and symbol for NaN is 'n/a'
+      - **double(€, 2, -)**: unit is '€', precision is 2 and symbol for NaN is '-'
  
       For string and email columns, you can specify the desired length of the text field used when editing these values, like this: string(40) or email(24).
       The default length is 12 for string and 32 for email and website. 
