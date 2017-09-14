@@ -13,39 +13,36 @@
 EditableGrid is a Javascript library that allows you to make the tables in your web sites and applications editable.
 EditableGrid focuses on simplicity: only a few lines of code are required to get your first table up and running.
 
-You can use the EditableGrid library in two ways:
+You can use the EditableGrid library in 2 ways:
 
-* Hook up to an existing HTML table. 
-   This approach can be very useful for plugging EditableGrid on an existing web application.
+* **Hook up to an existing HTML table
+   Useful for attaching EditableGrid to an existing application**
 
-* Build your grid from an XML description of the table structure and contents.
-   This approach is recommended if you're writing a new web application (or if you are want to improve an existing web application).
-
-This only influences the way you create your editable grid.
-The way you can customize and use your grid afterwards is identical in both cases.
+* **Build your grid from an XML description of the table structure and contents
+   Useful for writing new web app or improving upon existing web app**
 
 ## API documentation
 
-In directory doc/jsdoc you will find a reference documentation of all classes and functions available in this library.
+In directory **doc/jsdoc** you will find a reference documentation of all classes and functions available in this library.
 
 ## A first example
 
-This library is very simple to use, so the best way to start is just to check out an example.
-First, let's have a look at the result: open up examples/demo.html in your favorite browser.
-This example will let you edit cells of various types (string, numeric, enum, email, boolean, date).
-It will also let you sort columns by clicking on the column header and remove rows.
+This library is simple to use. *The best way to learn is through reading the examples*.
+Let's have a look at **examples/demo.html** in your favorite browser.
+* You can edit various types of cells *(string, numeric, enum, email, boolean, date)*.
+* You can sort columns by clicking on the column header and remove rows.
 
-In order to get you started, we provide a simplified version of this demo, so let's start with this.
+In order to get you started, we provide a simplified version of this demo.
 In file demo.html at line 12, you just have to replace "demo.js" with "demo_simple.js" and refresh the file in your browser.
 What you'll see is the same editable grid, but with some features removed.
 
 Now let's see the source code behind this demo:
 
-* demo.html/css: main html page and a stylesheet to make our table prettier
+* demo.html/css: main html page and a stylesheet for the table
 * demo.xml: xml file containing the table structure and contents
 * demo_simple.js: javascript source to create our editable grid
 
-Let's analyze each file in more details:
+Let's analyze each file:
 
 1. The HTML page is very simple: all it does is include the necessary javascript and css files and create some divs.
    The CSS file is a very simple and classical stylesheet.
