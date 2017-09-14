@@ -23,11 +23,11 @@ You can use the EditableGrid library in 2 ways:
 * **Build your grid from an XML description of the table structure and contents
    Useful for writing new web app or improving upon existing web app**
 
-## API documentation
+## API Documentation
 
 In directory **doc/jsdoc** you will find a reference documentation of all classes and functions available in this library.
 
-## A first example
+## A Simple Example
 
 This library is simple to use. *The best way to learn is through reading the examples*.
 Let's have a look at **examples/demo.html** in your favorite browser.
@@ -64,67 +64,68 @@ Let's analyze each file:
       - **double(m, 1, n/a)**: unit is 'm', precision is 1 and symbol for NaN is 'n/a'
       - **double(€, 2, -)**: unit is '€', precision is 2 and symbol for NaN is '-'
  
-      For string and email columns, you can specify the desired length of the text field used when editing these values, like this: string(40) or email(24).
+      For string and email columns, you can specify the length of the text field, e.g.: string(40) or email(24).
       The default length is 12 for string and 32 for email and website. 
 
+      **Validations**
+      
       A specific style will be applied to numeric columns (bold and aligned to the right).
-      Also, when a numeric cell is edited, the user won't be able to apply its changes until he enters a valid numeric value.
+      Also, when a numeric cell is edited, the user won't be able to apply changes until it's a valid numeric value.
       For emails and dates also, we check that the entered value is a valid email address, resp. date.
    
       You can also specify a list of predefined values for each column.
       In this case, when a cell is edited, the user will be presented with a drop-down list containing these predefined values.  
 
-   b. The table contents, enclosed in the <data> tag:
+   b. **The table contents enclosed in the <data> tag:**
 
-      This is basically a list of rows, each row containing a value for each column.
-      It is recommended to name your columns: this way you can declare them in any order and skip some columns if you want. 
-      But naming the columns is not mandatory: the order used in metadata must then be respected.
-      You can also assign a unique id with each row (for example, the id of the row in a database).
+      - This is a list of rows, where each row contains a value for each column.
+      - It is recommended to name your columns: this way you can declare them in any order, and skip some columns. 
+      - Naming the columns is not mandatory: the order used in metadata must then be respected.
+      - You can also assign a unique id with each row (for example, the id of the row in a database).
 
-   Just have a look at the XML file demo.xml: it should speak for itself.
+   Just have a look at the XML file demo.xml; it's self-explanatory.
 
-3) In the Javascript file demo_simple.js, all we do is to create an EditableGrid object and specify two things:
+3. In the Javascript file **demo_simple.js**, all we do is to create an EditableGrid object and specify 2 things:
 
-   a) A function "tableLoaded" that will be called when the grid has been fully loaded.
-      Here we simply display a message and define a renderer for the action column in order to display a delete button (see below for more details about cell renderers).
-      Then we render the loaded grid in our div "tablecontent" using out css style "testgrid".
+   a. **A function "tableLoaded" that will be called when the grid has been fully loaded.**
+      - Here we simply display a message and define a renderer for the action column in order to display a delete button (see below for more details about cell renderers).
+      - Then we render the loaded grid in our div "tablecontent" using out css style "testgrid".
 
-   b) A function "modelChanged" that will be called each time a cell has been modified by the uses.
-      Here we just display a message showing the new value.
-      In real life, it's here that you can for example update your database (with an AJAX request). 
+   b. **A function "modelChanged" that will be called each time a cell has been modified by the uses.**
+      - Here we just display a message showing the new value.
+      - In real life, it's here that you can for example update your database (with an AJAX request). 
 
-   When the EditableGrid object is created with the necessary callbacks activated, we use function "loadXML" to load the XMl file demo.xml.
+   *When the EditableGrid object is created with the necessary callbacks activated, we use function "loadXML" to load the XMl file demo.xml.*
 
-That's it for the basics of using EditableGrid.
+That ends the basics of learning EditableGrid.
 
-## Improving our first example
-
+## Improving the First Example
 
 You remember we asked you to replace **demo.js** with **demo_simple.js** in demo.html.
 Well now that you are ready to see the real power of EditableGrid, you can use "demo.js" again.
 
-In this part, we'll see how to further customize our editable grid, using mainly 3 mechanisms:
+In this part, we'll see how to further customize our editable grid, using 3 mechanisms:
 
-* cell and header renderers that allow you to customize the way values are displayed
-* cell validators that will allow you to tell when a value entered by the user is valid or not
-* enumeration providers that will allow you to dynamically build the list of possible values for a column
+* **cell and header renderers**: allows customizing the way values are displayed
+* **cell validators**: allows you to detect when user value is valid/not valid
+* **enumeration providers**: allows you to dynamically build a column's list of possible values
  
-The file "demo.js" will bring the following new features to our first example:
+The file **"demo.js"** will provide 8 following new features to our 1st example:
 
-1. show more details when a cell has been modified
-2. add a validator to check that the age must be inside the bounds [16, 100[
-3. display the unit in the HEIGHT column
-4. use a flag image to display the selected country
-5. propose a list of countries that depends on the selected continent
-6. clear the selected country when another continent is selected
-7. display an information icon in the table header for some columns
-8. possibility to attach to an existing HTML table (see file demo_attach.html)
+1. **show more details** when a cell gets modified
+2. **add a validator** to strictly verify age bounds [16, 100] (e.g.)
+3. display the **unit** in the HEIGHT column
+4. use a **flag image** to display the selected country
+5. propose a **list of countries** that depends on the selected continent
+6. **clear the selected country** when another continent is selected
+7. **display an information icon** in the table header for some columns
+8. possibility to **attach to an existing HTML table** (see file demo_attach.html)
 
-Let's see how each feature has been implemented in our example:
+Let's see how each feature's 8 implementations in the **demo.js** example:
 
-1. The modelChanged callback function receives as parameters: rowIndex, columnIndex, oldValue, newValue, row.
-   The last parameter "row" can be used to get the row id that was specified in the XML file.  
-   In our example, we display a message composed as follows:
+1. The modelChanged callback function receives the parameters **rowIndex, columnIndex, oldValue, newValue, row**.
+   The last parameter **"row"** can be used to **get the row id** that was specified in the XML file.  
+   In the example, we display a message:
    
        "Value for '" + this.getColumnName(columnIndex) + "' in row " + row.id + " has changed from '" + oldValue + "' to '" + newValue + "'"
 
@@ -163,17 +164,17 @@ Let's see how each feature has been implemented in our example:
 
    The function getOptionValues is called each time the cell must be edited.
    Here we do only client-side Javascript processing, but you could use Ajax here to communicate with your server.
-   If you do, then don't forget to use Ajax in synchronous mode. 
+   If you do,then don't forget to use Ajax in synchronous mode. 
 
-6. In the modeChanged function we can check the modified column: if it is the continent then we clear the country in the same row, like this:  
+6. In the modeChanged function we can check the modified column: if it is the continent then we clear the country in the same row:
 
 ```
    if (this.getColumnName(columnIndex) == "continent") 
 		this.setValueAt(rowIndex, this.getColumnIndex("country"), "");
 ```
 
-7. To achieve this, we will use the method setHeaderRenderer that allows us to customize the way column headers are rendered.
-   Since we want to use the same renderer for several column, we are going to declare a class InfoHeaderRenderer which extends CellRenderer, like this:
+7. We will use the method **setHeaderRenderer** that allows us to **customize the way column headers are rendered**.
+   Since we want to use the same renderer for several columns, we are going to declare a class InfoHeaderRenderer which extends CellRenderer:
 
 ```
    function InfoHeaderRenderer(message) { this.message = message; };
@@ -186,8 +187,8 @@ Let's see how each feature has been implemented in our example:
    setHeaderRenderer("age", new InfoHeaderRenderer("The age must be an integer between 16 and 99"));
    setHeaderRenderer("height", new InfoHeaderRenderer("The height is given in meters"));
 ```
-8. To attach to an existing HTML table you won't use the loadXML function as before.
-   Instead you will use the function attachToHTMLTable, as follows:
+8. To attach to an existing HTML table you **won't use the loadXML function as before**.
+   Instead **you will use the function attachToHTMLTable**, as follows:
 
 ```   
    	editableGrid.attachToHTMLTable($('htmlgrid'), 
@@ -200,22 +201,20 @@ Let's see how each feature has been implemented in our example:
 		  new Column({ name: "email", datatype: "email(26)" }),
 		  new Column({ name: "freelance", datatype: "boolean" }) ]);
 ```   
-   As you can guess, the HTML table you're attaching to will define the contents of the table.
-   But since we don't have the XML metadata to define the table columns, you must declare these columns using Javascript as shown above.
-   Of course, in this case you don't have to register the callback method "tableLoaded" since nothing has to be loaded.
+   - The HTML table you're attaching to will define the contents of the table.
+   - Since we don't have the XML metadata to define the table columns, you must declare these columns using Javascript as shown above.
+   - In this case you don't have to register the callback method "tableLoaded" since nothing has to be loaded.
  
 ## PHP helper class
 
- 
-If you work with PHP on the server side, you can make use of the simple class EditableGrid.php to ease the creation and rendering of the XML data.
+If you work with PHP on the server side, you can use the EditableGrid.php class to ease the creation and rendering of the XML data.
  
 ## Charts
-
  
-EditableGrid allows you to create bar and pie charts from the grid data.
+EditableGrid allows you to create **bar and pie charts** from the grid data.
 
-This makes use of OpenFlashCharts 2.0, which you should include by yourself in your client application.
-The following javascript files must be included (all can be found in the official OpenFlashChart 2.0 download):
+This utilizes OpenFlashCharts 2.0, which you should include in your client application.
+The following javascript files must be included (provided by the official OpenFlashChart 2.0 download links):
 
 * openflashchart/js-ofc-library/open_flash_chart.min.js
 * openflashchart/js-ofc-library/ofc.js
@@ -223,24 +222,25 @@ The following javascript files must be included (all can be found in the officia
 * openflashchart/js/json/json2.js
  
 If any of these files is missing, trying to use the charting methods will display an error indicating the missing library.
-The SWF file must be named "open-flash-chart.swf" and must be placed in the "openflashchart" directory: it will then be detected automatically. 
+The SWF file must be named "open-flash-chart.swf" and must be placed in the "openflashchart" directory: it will then be detected automatically.
  
-Creating charts with EditableGrid is very easy.
-The first thing to do is to have some empty DIV in your page that will be used as a container for the chart. 
+**Creating Charts with EditableGrid**
+
+The 1st thing to do is to **have some empty DIV** in your page that will be used as a **container** for the chart. 
 You can control the chart dimensions by setting the "width" and "height" attributes, inline or through a CSS stylesheet.
 Otherwise some default dimensions will be used (500*200px).
  
-Then according to the type of chart you want, you just have to call one of the following methods:
+Based upon the chart you desire, you have to call one of the following methods:
  
-1. renderBarChart(divId, title, labelColumnIndexOrName, legend)
+1. **renderBarChart(divId, title, labelColumnIndexOrName, legend)**
  
-   This method will create a bar chart: labelColumnIndexOrName is the name or index of the column that will be used for the chart categories.
-   For each category, you will have one bar per numerical column having the "bar" attribute set to true (which is the default).
-   The 'bar' attribute can be set in the grid XML metadata when declaring a column.
-   The 'legend' parameter is optional: by default the label of the column given by "labelColumnIndexOrName" will be used.
+   - This method will create a bar chart: labelColumnIndexOrName is the name or index of the column that will be used for the chart categories.
+   - For each category, you will have one bar per numerical column having the "bar" attribute set to true (which is the default).
+   - The 'bar' attribute can be set in the grid XML metadata when declaring a column.
+   - The 'legend' parameter is optional: by default the label of the column given by "labelColumnIndexOrName" will be used.
    You don't have to care about the chart's scale: it will be computed automatically to best fit the data.
 
-   Example: Imagine you have the following data giving the number of kilometers done by person and by year
+   **Example**: Imagine you have the following data: # of kM ran by person every year.
  
 ```
 	name    2009   2010
@@ -266,17 +266,17 @@ Then according to the type of chart you want, you just have to call one of the f
                    Person	   
 ```
  
-2. renderPieChart(divId, title, valueColumnIndexOrName, labelColumnIndexOrName, startAngle) 
+2. **renderPieChart(divId, title, valueColumnIndexOrName, labelColumnIndexOrName, startAngle)**
 
-   This method will create a pie chart: 
+   This method will create a **pie chart**: 
    
-   * valueColumnIndexOrName is the name or index of the column that will be used as the value for each pie part
-   * labelColumnIndexOrName is the name or index of the column that will be used as the label for each pie part
+   * **valueColumnIndexOrName**: name or index of the column that will be used as the **value** for each pie part
+   * **labelColumnIndexOrName**: name or index of the column that will be used as the **label** for each pie part
  
-   In other words, you can display the distribution of the values of "valueColumnIndexOrName" as a pie, using "labelColumnIndexOrName" to label each value.
-   The percentage of each value w.r.t. the column's total will also be displayed in the label.
-   The startAngle parameter is optional: it gives the angle of the first pie part (default is 0).
-   If no title is given (i.e. title is null) the label of the column given by "valueColumnIndexOrName" will be used.
+   - In other words, you can display the distribution of the values of "valueColumnIndexOrName" as a pie, using "labelColumnIndexOrName" to label each value.
+   - The percentage of each value w.r.t. the column's total will also be displayed in the label.
+   - The startAngle parameter is optional: it gives the angle of the first pie part (default is 0).
+   - If no title is given (i.e. title is null) the label of the column given by "valueColumnIndexOrName" will be used.
  
 Both methods renderPieChart and renderBarChart can be called any number of times: if the chart already exists it will be updated (ie. not rebuilt).
 For example, you can call one of these methods each time the table is sorted (tableSorted) or edited (modelChanged), in order to update the chart to match the new data.
