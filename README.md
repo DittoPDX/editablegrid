@@ -13,11 +13,17 @@
 ##### Table of Contents
 
 [Introduction](#introduction)
+
 [A Simple Example](#a-simple-example)
+
 [Introduction](#introduction)
+
 [Improving the First Example](#improving-the-first-example)
+
 [PHP Helper Class](#php-helper-class)
+
 [Charts](#charts)
+
 [Extensions](#extensions)
 
 ## Introduction
