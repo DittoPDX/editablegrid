@@ -12,7 +12,7 @@
 
 ##### Table of Contents
 
-[test](Introduction)
+[Introduction](#heading)
 
 ### Introduction
 
