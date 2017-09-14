@@ -17,11 +17,13 @@ EditableGrid focuses on simplicity: only a few lines of code are required to get
 
 You can use the EditableGrid library in 2 ways:
 
-* **Hook up to an existing HTML table
-   Useful for attaching EditableGrid to an existing application**
+* **Hook up to an existing HTML table**
 
-* **Build your grid from an XML description of the table structure and contents
-   Useful for writing new web app or improving upon existing web app**
+   - Useful for attaching EditableGrid to an existing application
+
+* **Build your grid from an XML description of the table structure and contents**
+
+   - Useful for writing new web app or improving upon existing web app
 
 ## API Documentation
 
