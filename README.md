@@ -121,7 +121,7 @@ The file **"demo.js"** will provide 8 following new features to our 1st example:
 5. propose a **list of countries** that depends on the selected continent
 6. **clear the selected country** when another continent is selected
 7. **display an information icon** in the table header for some columns
-8. possibility to **attach to an existing HTML table** (see file demo_attach.html)
+8. **attach to an existing HTML table** (see file demo_attach.html)
 
 Let's see how each feature's 8 implementations in the **demo.js** example:
 
