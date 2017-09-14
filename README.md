@@ -10,7 +10,11 @@
 
 **As of September 14th, 2017, the documentation for below has been SIMPLIFIED.** 
 
-## Introduction
+##### Table of Contents
+
+[test](Introduction)
+
+### Introduction
 
 EditableGrid is a Javascript library that allows you to make the tables in your web sites and applications editable.
 EditableGrid focuses on simplicity: only a few lines of code are required to get your first table up and running.
