@@ -6,10 +6,6 @@
 
 # EditableGrid v1.0.11 
 
-**Documentation below is NOT up to date as it does not contain the latest features added in EditableGrid 2.0.**
-
-**As of September 14th, 2017, the documentation for below has been SIMPLIFIED.** 
-
 ##### Table of Contents
 
 [Introduction](#introduction)
@@ -25,6 +21,10 @@
 [Charts](#charts)
 
 [Extensions](#extensions)
+
+**Documentation below is NOT up to date as it does not contain the latest features added in EditableGrid 2.0.**
+
+**As of September 14th, 2017, the documentation for below has been SIMPLIFIED.** 
 
 ## Introduction
 
